@@ -10,8 +10,8 @@ export const DIM={
   mfa_desktop:[1920,1200], services_desktop:[1920,1200], pricing_desktop:[1920,1200],
   formation_desktop:[1920,1200], references_desktop:[1920,1200], casusage_desktop:[1920,1200],
   conseil_desktop:[1920,1200], contact_desktop:[1920,1200],
-  band_nav:[1400,74], band_hero:[1400,331], band_results:[1400,331], band_services:[1400,264],
-  band_why:[1400,118], band_cta:[1400,331],
+  band_nav:[1400,74], band_hero:[1400,175], band_results:[1400,175], band_services:[1400,175],
+  band_why:[1400,175], band_cta:[1400,175], mfa_proof:[1400,883],
   home_nav:[1500,78], home_hero:[1500,1183], home_results:[1500,868], home_services:[1500,1080],
   home_why:[1500,1394], home_cta:[1500,514], stats_band:[1800,244],
   tab_Chatbot:[1500,1080], tab_Email:[1500,1066], tab_Veille:[1500,1066],
@@ -71,13 +71,13 @@ export function buildScene(){
   O.statsSrc=add(S.text3(B.statsSource,17,'sub'));
   O.layers=[['band_nav','Navigation'],['band_hero','Hero'],['band_results','Résultats'],
             ['band_services','Modules'],['band_why','Preuves'],['band_cta','Conversion']]
-    .map(([k,tag])=>{const o=add(card(1040,k,'layer'));const t=document.createElement('div');
+    .map(([k,tag])=>{const o=add(card(860,k,'layer'));const t=document.createElement('div');
       t.className='tag';t.textContent=tag;o.appendChild(t);o._tag=t;return o;});
   O.tabA=add(card(1180,'tab_Chatbot'));
   O.tabB=add(card(1180,'tab_Email'));
   O.tabC=add(card(1180,'tab_Veille'));
-  O.hsEmail=S.hotspot(O.tabA,0.1413,0.2442);
-  O.hsVeille=S.hotspot(O.tabB,0.2191,0.2442);
+  O.hsEmail=S.hotspot(O.tabA,0.1490,0.2585);
+  O.hsVeille=S.hotspot(O.tabB,0.2268,0.2585);
   O.hsStart=S.hotspot(O.tabA,0.74,0.80);
   O.donna=add(S.browserWindow(1180,782,B.url,[{id:'s',file:'donna_scroll.png'}]));
   O.donna._path.textContent='/produits/donna';
@@ -92,6 +92,7 @@ export function buildScene(){
   O.phone._screen.style.backgroundSize='100% auto';
   O.deskShadow=add(S.contactShadow(960,190));
   O.arc=B.pages.map(([k,label,path])=>{const o=add(miniWin(600,k+'_desktop',path));o._label=label;return o;});
+  O.proofCard=add(card(1240,'mfa_proof'));
   O.clients=B.clients.map(c=>add(S.text3(c,28,'sub')));
   O.endCta=add(S.text3(`<span class="endcta">${B.cta}</span>`,1));
   O.endUrl=add(S.text3(`<span class="endurl">${B.url}</span>`,1));
@@ -116,10 +117,10 @@ function coldOpen(t,g){
   L._mask.style.width=(L._img.offsetWidth||620)+'px';
   L._eb.style.opacity=(G*E.outQuint(clamp(inv(1.3,2.4,lt)))).toFixed(3);
   L._eb.style.letterSpacing=lerp(.66,.34,E.outExpo(clamp(inv(1.3,2.8,lt)))).toFixed(3)+'em';
-  place(L,{x:0,y:-30,z:lerp(-300,-30,k),s:lerp(.88,1,k),o:G,rz:lerp(-2.4,0,k)});
-  place(O.coldRule,{x:0,y:96,z:lerp(-200,-20,k),o:E.outQuint(clamp(inv(1.5,2.5,lt)))*.9,
+  place(L,{x:0,y:-74,z:lerp(-300,-30,k),s:lerp(.88,1,k),o:G,rz:lerp(-2.4,0,k)});
+  place(O.coldRule,{x:0,y:168,z:lerp(-200,-20,k),o:E.outQuint(clamp(inv(1.5,2.5,lt)))*.9,
     s:lerp(.3,1,E.outExpo(clamp(inv(1.5,3.0,lt))))});
-  place(O.coldLine,{x:0,y:150,z:lerp(-200,-20,k),o:E.outQuint(clamp(inv(2.0,3.1,lt)))*.85});
+  place(O.coldLine,{x:0,y:224,z:lerp(-200,-20,k),o:E.outQuint(clamp(inv(2.0,3.1,lt)))*.85});
   applyCam({x:0,y:0,z:0,rx:lerp(5.5,0,E.inOutQuint(clamp(inv(0,3.6,lt)))),ry:0,dof:0});
   g.dustFlow=lerp(2.6,.4,E.outExpo(clamp(inv(0,2.8,lt))));
   g.gridK=.3+.32*E.out(clamp(inv(.3,3.2,lt)));
@@ -153,7 +154,7 @@ function promise(t,g){
 }
 function stats(t,g){
   const m=M.stats, lt=t-m.t0, G=gate();
-  const travel=E.inOutQuint(clamp(inv(.2,6.0,lt)));
+  const travel=E.inOutQuint(clamp(inv(.2,6.0,lt)))*.55;
   O.stats.forEach((s,i)=>{
     const d=i*.075, kk=clamp(inv(d,d+1.2,lt)), k=E.outQuint(kk);
     const x=(i-1.5)*412 + lerp(24,-24,travel)*(1+i*.1);
@@ -172,7 +173,7 @@ function exploded(t,g){
   const m=M.exploded, lt=t-m.t0, G=gate();
   const openK=E.outQuint(clamp(inv(.45,3.2,lt)));
   const closeK=E.spring(clamp(inv(4.9,6.8,lt)),2.4,5.0);
-  const sep=lerp(.3,1,openK)*(1-clamp(closeK)*.72)+.3*clamp(closeK);  // jamais un empilement exact
+  const sep=lerp(.22,1,openK)*(1-clamp(closeK)*.7)+.22*clamp(closeK);  // jamais un empilement exact
   const orbit=E.inOutQuint(clamp(inv(.3,5.4,lt)));
   const N=O.layers.length;
   const zc=zfit(1040,760,.58,.66);
@@ -183,7 +184,7 @@ function exploded(t,g){
     place(L,{x,y,z,rx:lerp(4,16,sep),ry:lerp(0,-3.2,sep),o:G,s:lerp(1,.9,sep*.4),blur:d});
     L._tag.style.opacity=(G*E.out(clamp(inv(.8+i*.08,1.8+i*.08,lt)))*(1-clamp(closeK))).toFixed(3);
   });
-  applyCam({x:lerp(-26,52,orbit),y:lerp(-6,22,orbit),z:0,ry:lerp(-17,19,orbit),rx:lerp(-2.5,6.5,orbit),dof:0});
+  applyCam({x:lerp(-20,34,orbit),y:lerp(-4,14,orbit),z:0,ry:lerp(-15,16,orbit),rx:lerp(-2,5,orbit),dof:0});
   g.gridK=.55;
   caption(t,{eyebrow:'Anatomie de la page d’accueil',text:'Une page, six couches.',t0:m.t0+1.3,t1:m.t1-.8});
 }
@@ -211,7 +212,9 @@ function donna(t,g){
   const m=M.donna, lt=t-m.t0, G=gate();
   const k=E.inOutQuint(clamp(inv(0,5.0,lt)));
   const scrollK=E.inOutQuint(clamp(inv(.8,4.2,lt)));
-  const full=1180*ar('donna_scroll'), view=740, maxS=(full-view)*.82;
+  const full=1180*ar('donna_scroll'), view=740;
+  // section « En profondeur » a 20,97 % de la page : le defilement s'y arrete net
+  const maxS=Math.min(full-view, 0.2097*9767*(3403/3500)*(full/3403));
   O.donna._shots.s.style.height=full+'px';
   O.donna._shots.s.style.transform=`translateY(${(-scrollK*maxS).toFixed(1)}px)`;
   const zEnd=zfit(1180,782,.78,.74), zStart=zEnd-300;
@@ -236,7 +239,7 @@ function calc(t,g){
   else if(lt>=drag0&&lt<4.8) cursorMove(lt,{from:O.hsSlid0,to:O.hsSlid1,t0:drag0,t1:drag1,click:drag0,fade:.05});
   else cursorHide();
   g.gridK=.42;
-  caption(t,{eyebrow:'Calculateur du site, curseurs déplacés',text:'',t0:m.t0+.4,t1:m.t1-.3});
+  caption(t,{eyebrow:'Calculateur du site, curseurs déplacés',text:'',t0:m.t0+1.25,t1:m.t1-.3});
 }
 function devices(t,g){
   const m=M.devices, lt=t-m.t0, G=gate();
@@ -244,12 +247,12 @@ function devices(t,g){
   const en=i=>E.outQuint(clamp(inv(.06+i*.13,1.35+i*.13,lt)));
   shotOp(O.win,'home',1); shotOp(O.win,'mfa',0); shotOp(O.win,'produits',0);
   O.win._path.textContent='';
-  place(O.win,{x:lerp(48,92,k)+(1-en(0))*54,y:lerp(-90,-108,k)+(1-en(0))*30,z:lerp(-430,-380,k)-(1-en(0))*90,rx:3.4,ry:lerp(15,8,k),o:G,s:1});
-  place(O.laptop,{x:lerp(486,502,k)+(1-en(1))*46,y:lerp(96,78,k)+(1-en(1))*34,z:lerp(-160,-120,k)-(1-en(1))*90,rx:lerp(6,3.5,k),ry:lerp(-19,-12,k),o:G,s:1});
+  place(O.win,{x:lerp(48,92,k)+(1-en(0))*54,y:lerp(-90,-108,k)+(1-en(0))*30,z:lerp(-430,-380,k)-(1-en(0))*90,rx:3.4,ry:lerp(15,11,k),o:G,s:1});
+  place(O.laptop,{x:lerp(486,502,k)+(1-en(1))*46,y:lerp(96,78,k)+(1-en(1))*34,z:lerp(-160,-120,k)-(1-en(1))*90,rx:lerp(6,4,k),ry:lerp(-19,-14,k),o:G,s:1});
   const ph=310*ar('home_mobscroll'), pv=310*2.164-22;
   O.phone._screen.style.height=ph+'px';
-  O.phone._screen.style.transform=`translateY(${(-E.inOutQuint(clamp(inv(.5,3.6,lt)))*(ph-pv)).toFixed(1)}px)`;
-  place(O.phone,{x:lerp(-470,-448,k)-(1-en(2))*46,y:lerp(46,28,k)+(1-en(2))*34,z:lerp(20,70,k)-(1-en(2))*90,rx:lerp(4,2,k),ry:lerp(21,13,k),o:G,s:1});
+  O.phone._screen.style.transform=`translateY(${(-E.inOutQuint(clamp(inv(.5,3.6,lt)))*(ph-pv)*.53).toFixed(1)}px)`;
+  place(O.phone,{x:lerp(-470,-448,k)-(1-en(2))*46,y:lerp(46,28,k)+(1-en(2))*34,z:lerp(20,70,k)-(1-en(2))*90,rx:lerp(4,3,k),ry:lerp(21,15,k),o:G,s:1});
   place(O.deskShadow,{x:496,y:356,z:-210,o:G*.3});
   applyCam({x:lerp(96,20,k),y:lerp(-16,6,k),z:0,ry:lerp(-5.5,3.5,k),rx:lerp(-1,2,k),dof:0});
   cursorHide(); g.gridK=.5;
@@ -257,32 +260,31 @@ function devices(t,g){
 }
 function carousel(t,g){
   const m=M.carousel, lt=t-m.t0, G=gate();
-  const sweep=E.inOutQuint(clamp(inv(.05,3.85,lt)));
-  const N=O.arc.length, RAD=1120, span=108, base=zfit(600,600*ar('home_desktop')+34,.32,.50);
+  const sweep=E.inOutQuint(clamp(inv(.05,3.9,lt)));
+  // rail : pas de 740 px pour des fenetres de 600 projetees a 600 x cos(19 deg) = 567 -> jamais de recouvrement
+  const N=O.arc.length, STEP=740, base=zfit(600,600*ar('home_desktop')+34,.36,.56);
+  const camX=lerp(-(N-1)/2*STEP-40, (N-1)/2*STEP+40, sweep);
   O.arc.forEach((w,i)=>{
-    const a0=(i/(N-1)-.5)*span, ang=(a0-lerp(-26,26,sweep))*Math.PI/180;
-    const x=Math.sin(ang)*RAD*0.88, z=base+Math.cos(ang)*RAD-RAD;
-    const en=E.outQuint(clamp(inv(.04+i*.05,1.0+i*.05,lt)));
-    const d=Math.min(1,Math.abs(x)/RAD);
-    place(w,{x,y:lerp(60,-42,en)+Math.sin(i*1.7)*14,z:z-(1-en)*120,ry:-(a0-lerp(-26,26,sweep))*.8,rx:2.4,
-      o:G,s:1,blur:d*d*5.2});                     // profondeur par le flou, jamais par la transparence
-    w.style.zIndex=String(1000+Math.round(z));
+    const x=(i-(N-1)/2)*STEP;
+    const en=E.outQuint(clamp(inv(.02+i*.04,.9+i*.04,lt)));
+    const dx=(x-camX)/STEP;                         // distance a l'axe de la camera, en pas de rail
+    place(w,{x,y:-22+Math.sin(i*1.35)*26,z:base+Math.cos(i*.9)*70-(1-en)*150,
+      ry:-19,rx:2.2,o:G,s:1,blur:Math.min(2.6,Math.abs(dx)*Math.abs(dx)*.55)});
   });
-  applyCam({x:0,y:lerp(-12,7,sweep),z:0,ry:lerp(1.8,-1.8,sweep),rx:lerp(1.4,-.7,sweep),dof:0});
+  applyCam({x:camX,y:lerp(-10,6,sweep),z:0,ry:lerp(2.6,-2.6,sweep),rx:lerp(1.2,-.6,sweep),dof:0});
   cursorHide(); g.gridK=.6;
   caption(t,{eyebrow:'Le site en entier',text:'Quinze pages, une identité.',t0:m.t0+.4,t1:m.t1-.3});
 }
 function proof(t,g){
   const m=M.proof, lt=t-m.t0, G=gate();
   const k=E.inOutQuint(clamp(inv(0,3.8,lt)));
-  shotOp(O.win,'home',0); shotOp(O.win,'produits',0); shotOp(O.win,'mfa',1);
-  O.win._path.textContent='/references/mfa';
-  const zEnd=zfit(1280,844,.74,.64), zStart=zEnd-220;
-  place(O.win,{x:lerp(-16,8,k),y:lerp(-108,-142,k),z:lerp(zStart,zEnd,k),rx:lerp(8,4,k),ry:lerp(-12,-8.5,k),o:G});
-  place(O.winShadow,{x:0,y:lerp(296,258,k),z:lerp(zStart-140,zEnd-150,k),o:G*.34,s:.92});
+  const hh=1240*ar('mfa_proof');
+  const zEnd=zfit(1240,hh,.80,.66), zStart=zEnd-240;
+  place(O.proofCard,{x:lerp(-16,8,k),y:lerp(-92,-118,k),z:lerp(zStart,zEnd,k),rx:lerp(8,4,k),ry:lerp(-13,-8.5,k),o:G});
+  place(O.winShadow,{x:0,y:lerp(300,272,k),z:lerp(zStart-140,zEnd-150,k),o:G*.34,s:.92});
   O.clients.forEach((c,i)=>{
     const d=.7+i*.11, kk=E.outQuint(clamp(inv(d,d+.8,lt)));
-    place(c,{x:(i-2)*312,y:lerp(276,258,k),z:lerp(-60,-20,k),ry:lerp(-3,1.5,k),o:G*kk*.72,s:lerp(.92,1,kk)});
+    place(c,{x:(i-2)*318,y:lerp(322,306,k),z:lerp(-60,-20,k),ry:lerp(-4,1.5,k),o:G*kk*.72,s:lerp(.92,1,kk)});
   });
   applyCam({x:lerp(14,-8,k),y:lerp(16,-10,k),z:0,ry:lerp(1.8,-1.2,k),rx:lerp(-.8,1.6,k),dof:0});
   cursorHide(); g.gridK=.5;
@@ -296,12 +298,12 @@ function endcard(t,g){
   L._mask.style.height='auto'; L._mask.style.width='auto';
   L._eb.style.opacity=(G*E.outQuint(clamp(inv(.4,1.4,lt)))).toFixed(3);
   L._eb.style.letterSpacing='.34em';
-  place(L,{x:0,y:lerp(-246,-232,k),z:lerp(-140,-20,k),o:G,s:lerp(.92,1,k)});
-  place(O.endCta,{x:0,y:lerp(112,88,E.spring(clamp(inv(.6,1.9,lt)),2.4,5)),z:lerp(-60,20,k),
+  place(L,{x:0,y:lerp(-214,-200,k),z:lerp(-140,-20,k),o:G,s:lerp(.92,1,k)});
+  place(O.endCta,{x:0,y:lerp(136,114,E.spring(clamp(inv(.6,1.9,lt)),2.4,5)),z:lerp(-60,20,k),
     o:G*E.outQuint(clamp(inv(.1,1.0,lt)))});
-  place(O.endUrl,{x:0,y:lerp(214,196,k),z:lerp(-60,20,k),o:G*E.outQuint(clamp(inv(.3,1.3,lt)))*.9});
-  place(O.endProd,{x:0,y:lerp(-46,-58,k),z:lerp(-60,20,k),o:G*E.outQuint(clamp(inv(.5,1.5,lt)))*.62});
-  place(O.endFoot,{x:0,y:lerp(300,286,k),z:lerp(-60,20,k),o:G*E.outQuint(clamp(inv(.75,1.7,lt)))*.5});
+  place(O.endUrl,{x:0,y:lerp(236,218,k),z:lerp(-60,20,k),o:G*E.outQuint(clamp(inv(.3,1.3,lt)))*.9});
+  place(O.endProd,{x:0,y:lerp(8,-2,k),z:lerp(-60,20,k),o:G*E.outQuint(clamp(inv(.5,1.5,lt)))*.62});
+  place(O.endFoot,{x:0,y:lerp(318,304,k),z:lerp(-60,20,k),o:G*E.outQuint(clamp(inv(.75,1.7,lt)))*.5});
   applyCam({x:0,y:0,z:0,rx:0,ry:0,dof:0});
   g.dustFlow=lerp(.4,1.7,E.in(clamp(inv(1.0,3.6,lt))));
   g.gridK=lerp(.5,.36,E.inOut(clamp(inv(1.0,3.4,lt))));
