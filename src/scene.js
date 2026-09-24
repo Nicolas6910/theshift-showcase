@@ -35,7 +35,9 @@ export function phone(w,img){
   const h=Math.round(w*2.164);
   const o=el('div','obj phone'); o._w=w; o._h=h; o.style.width=w+'px'; o.style.height=h+'px';
   const inn=el('div','phone-inner',o); el('div','notch',inn);
-  const im=el('div','shot',inn); im.style.backgroundImage=`url(${A}${img})`; o._screen=im;
+  const im=el('div','shot',inn); im.style.backgroundImage=`url(${A}${img})`;
+  im.style.top='48px';                      // zone de securite : le contenu ne passe jamais sous l'encoche
+  o._screen=im; o._safe=48;
   return o;
 }
 export function imgLayer(w,img,tag,cls){

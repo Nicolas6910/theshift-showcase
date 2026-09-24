@@ -249,9 +249,9 @@ function devices(t,g){
   O.win._path.textContent='';
   place(O.win,{x:lerp(48,92,k)+(1-en(0))*54,y:lerp(-90,-108,k)+(1-en(0))*30,z:lerp(-430,-380,k)-(1-en(0))*90,rx:3.4,ry:lerp(15,11,k),o:G,s:1});
   place(O.laptop,{x:lerp(486,502,k)+(1-en(1))*46,y:lerp(96,78,k)+(1-en(1))*34,z:lerp(-160,-120,k)-(1-en(1))*90,rx:lerp(6,4,k),ry:lerp(-19,-14,k),o:G,s:1});
-  const ph=310*ar('home_mobscroll'), pv=310*2.164-22;
+  const ph=310*ar('home_mobscroll'), pv=310*2.164-22-48;
   O.phone._screen.style.height=ph+'px';
-  O.phone._screen.style.transform=`translateY(${(-E.inOutQuint(clamp(inv(.5,3.6,lt)))*(ph-pv)*.53).toFixed(1)}px)`;
+  O.phone._screen.style.transform=`translateY(${(-E.inOutQuint(clamp(inv(.5,3.6,lt)))*(ph-pv)*.46).toFixed(1)}px)`;
   place(O.phone,{x:lerp(-470,-448,k)-(1-en(2))*46,y:lerp(46,28,k)+(1-en(2))*34,z:lerp(20,70,k)-(1-en(2))*90,rx:lerp(4,3,k),ry:lerp(21,15,k),o:G,s:1});
   place(O.deskShadow,{x:496,y:356,z:-210,o:G*.3});
   applyCam({x:lerp(96,20,k),y:lerp(-16,6,k),z:0,ry:lerp(-5.5,3.5,k),rx:lerp(-1,2,k),dof:0});

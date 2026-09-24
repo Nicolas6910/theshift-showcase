@@ -60,14 +60,15 @@ html,body{height:100%;background:#06080f;font-family:'Inter',system-ui,-apple-sy
   box-shadow:0 26px 46px -22px #0f172a80}
 .laptop-notch{position:absolute;left:50%;top:0;width:96px;height:7px;background:#0f172a;border-radius:0 0 7px 7px;transform:translateX(-50%)}
 .phone{border-radius:44px;background:#0f172a;padding:11px;box-shadow:0 2px 4px #0f172a1f,0 26px 60px -18px #0f172a5c}
-.phone-inner{border-radius:34px;overflow:hidden;background:#fff;position:relative;height:100%}
-.phone .notch{position:absolute;left:50%;top:9px;width:108px;height:26px;background:#0f172a;border-radius:15px;transform:translateX(-50%);z-index:3}
+.phone-inner{border-radius:34px;overflow:hidden;background:#fff;position:relative;height:100%;padding-top:48px}
+.phone .notch{position:absolute;left:50%;top:11px;width:108px;height:26px;background:#0f172a;border-radius:15px;transform:translateX(-50%);z-index:3}
 
 /* cards / layers */
 .card3d{border-radius:18px;background:#fff;border:1px solid var(--border);overflow:hidden;
   box-shadow:0 1px 3px #0f172a0f,0 18px 46px -16px #0f172a3d}
-.layer{border-radius:14px;overflow:hidden;background:#fff;border:1px solid #e2e8f0cc;
+.layer{border-radius:14px;background:#fff;border:1px solid #e2e8f0cc;
   box-shadow:0 14px 40px -16px #1e3a8a52}
+.layer > div:first-child{border-radius:13px;overflow:hidden}
 .layer .tag{position:absolute;left:-13px;top:14px;transform:translateX(-100%);
   font-size:15px;font-weight:600;color:var(--primary);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;
   padding:6px 13px;border-radius:999px;background:#fff;border:1px solid #2563eb33;box-shadow:0 6px 18px -8px #2563eb59}
