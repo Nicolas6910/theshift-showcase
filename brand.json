@@ -1,0 +1,76 @@
+{
+  "source": "https://www.the-shift.ai/",
+  "name": "the-shift.ai",
+  "legalName": "The Shift",
+  "extractedAt": "2026-09-24",
+  "scheme": "light",
+  "logo": {
+    "primary": {
+      "file": "capture/logo_raw.png",
+      "origin": "https://www.the-shift.ai/the-shift_dot_ai_petit.png",
+      "found_via": "header <img alt=\"the-shift.ai\"> (servi via next/image)",
+      "format": "PNG",
+      "natural": "949x444",
+      "note": "aucun SVG inline dans le DOM : les seuls <svg> du header sont des icones lucide (chevron, arrow). Le logo est donc pris en PNG a sa plus haute resolution disponible, jamais redessine."
+    },
+    "favicon": { "file": "capture/favicon.png", "origin": "/icon", "size": "32x32" },
+    "appleTouch": { "file": "capture/apple-icon.png", "origin": "/apple-icon", "size": "180x180" },
+    "ogImage": { "file": "capture/og.png", "origin": "/opengraph-image", "size": "1200x630" }
+  },
+  "colors": {
+    "source": "CSS custom properties de :root + computed styles + echantillonnage du hero",
+    "primary": "#2563eb",
+    "primaryDark": "#1e3a8a",
+    "primaryLight": "#3b82f6",
+    "accentViolet": "#7c3aed",
+    "background": "#fafafa",
+    "surface": "#f1f5f9",
+    "card": "#ffffff",
+    "border": "#e2e8f0",
+    "text": "#0f172a",
+    "textMuted": "#475569",
+    "glow": "#2563eb14",
+    "glowStrong": "#2563eb40",
+    "onPrimary": "#ffffff"
+  },
+  "typography": {
+    "headings": { "family": "Inter", "weight": 700, "sizeH1Desktop": "72px", "color": "#0f172a" },
+    "body": { "family": "Inter", "weight": 400, "color": "#0f172a", "muted": "#475569" },
+    "stack": "Inter, \"Inter Fallback\", system-ui, -apple-system, sans-serif",
+    "loadedFrom": "le site self-hoste Inter via next/font. Le showcase charge la MEME famille (Inter) depuis Google Fonts : meme dessin de caracteres, pas une substitution.",
+    "substituted": false
+  },
+  "shape": {
+    "radiusToken": "20px (--radius)",
+    "radiusButtons": "8px (nav) / 12px (CTA hero, cartes)",
+    "buttonStyle": "aplat plein #2563eb, texte blanc, pas d'ombre portee marquee",
+    "shadow": "ombres tres douces, diffuses, faible opacite (style tailwind shadow-sm/md)",
+    "spacing": "rythme aere : sections py-20 a py-32, separateurs en vagues SVG entre sections",
+    "icons": "lucide-react, stroke 2px, linecap round"
+  },
+  "voice": {
+    "eyebrow": "AI Driven Development",
+    "headline": "Dans cinq ans, votre entreprise sera AI Driven. Ou elle ne sera plus.",
+    "tagline": "The Shift est l'usine logicielle qui a deja fait basculer MFA, Expert-Flow.ai et Prizoners. Avec Jarvis et Donna, on installe la meme methode chez vous.",
+    "sectionTitles": ["Des resultats mesurables", "Ce qu'on deploie", "Pourquoi The Shift", "Pret a passer en AI Driven Development ?"],
+    "stats": [
+      { "value": "88 %", "label": "des entreprises utilisent deja l'IA" },
+      { "value": "94 %", "label": "n'en tirent aucune valeur" },
+      { "value": "6 %", "label": "capturent tout — et creusent l'ecart" },
+      { "value": "50 %", "label": "des emplois entry-level menaces d'ici 1 a 5 ans" }
+    ],
+    "statsSource": "Sources : McKinsey, State of AI 2025 · Dario Amodei (CEO Anthropic), Axios, 28 mai 2025",
+    "results": [
+      { "value": "10x", "label": "ROI moyen en 12 mois" },
+      { "value": "15h /semaine", "label": "Temps libere pour vos equipes" }
+    ],
+    "products": ["Donna", "Jarvis", "The Brain"],
+    "services": ["Chatbot", "Email", "Veille", "Contenu", "Bot equipe", "Multi-agents"],
+    "clients": ["MFA", "Expert-Flow.ai", "Prizoners", "Lab-Mind.ai", "Beyond Scale Group"],
+    "mfaProof": { "headline": "MFA : 14 marques et 400 documents tiennent dans un seul agent IA", "figures": ["3h", "14", "400+"] },
+    "ctaPrimary": "Audit strategique gratuit — 45 min",
+    "ctaSecondary": "Decouvrir nos services",
+    "footerContact": "support@the-shift.ai · 12 rue de la Part-Dieu, 69003 Lyon",
+    "note": "tout le texte a l'ecran est copie mot pour mot du site, aucun chiffre ni promesse inventes."
+  }
+}

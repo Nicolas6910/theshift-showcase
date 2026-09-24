@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>the-shift.ai — showcase</title>
+<meta name="description" content="Presentation cinematique de the-shift.ai, rendue 100% en code a partir de captures reelles du site.">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+<div id="fit">
+  <div id="app">
+    <div id="bg">
+      <div class="mesh m1"></div><div class="mesh m2"></div><div class="mesh m3"></div>
+      <div id="grid"><div id="gridinner"></div></div>
+      <canvas id="dust" width="1920" height="1080"></canvas>
+      <div id="vignette"></div>
+    </div>
+    <div id="camera"><div id="world"></div></div>
+    <div id="overlay">
+      <div id="caption"><div class="cap-in"><span id="cap-eyebrow"></span><span id="cap-text"></span></div></div>
+      <div id="cursor"><svg viewBox="0 0 24 24"><path d="M5 2l14 9.5-6.2 1.2 3.4 6.6-2.6 1.4-3.4-6.6L5 18.8z"/></svg><i class="ripple"></i></div>
+      <div id="progress"><i></i></div>
+    </div>
+  </div>
+</div>
+<div id="hud">
+  <button id="play" aria-label="Lecture">▶</button>
+  <span id="clock">0.0 / 61.0 s</span>
+  <span class="hint">espace&nbsp;: play/pause · ←/→&nbsp;: plan précédent/suivant · S&nbsp;: son</span>
+  <a id="srcLink" href="https://www.the-shift.ai/" target="_blank" rel="noopener">the-shift.ai ↗</a>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
