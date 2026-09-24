@@ -34,7 +34,8 @@ export function place(el,o={}){
   if(ctr)parts.push('translate(-50%,-50%)');
   el.style.transform=parts.join(' ');
   if(o.o!=null){el.style.opacity=o.o; el.style.visibility=o.o<=0.002?'hidden':'visible';}
-  if(o.blur!=null){const b=o.blur;el.style.filter=b>0.05?`blur(${b.toFixed(2)}px)`:'none';}
+  if(o.blur!=null){const b=o.blur, tgt=el._blurTarget||el;
+    tgt.style.filter=b>0.05?`blur(${b.toFixed(2)}px)`:'none';}
 }
 export const hide=el=>{el.style.opacity=0;el.style.visibility='hidden';};
 export const px=n=>n.toFixed(2)+'px';

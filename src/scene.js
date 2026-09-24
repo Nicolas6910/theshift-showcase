@@ -12,7 +12,7 @@ export function browserWindow(w,h,url,shots){
   el('span','lock',ad);
   ad.insertAdjacentHTML('beforeend',`<span>https://</span><b>${url}</b><span id="addrpath"></span>`);
   o._path=ad.querySelector('#addrpath'); o._path.removeAttribute('id');
-  const body=el('div','winbody',o); o._body=body;
+  const body=el('div','winbody',o); o._body=body; o._blurTarget=body;
   o._shots={};
   (shots||[]).forEach((s,i)=>{const sc=el('div','shot',body);sc.style.backgroundImage=`url(${A}${s.file})`;
     sc.style.opacity=i===0?1:0; o._shots[s.id]=sc;});
@@ -41,7 +41,7 @@ export function phone(w,img){
 export function imgLayer(w,img,tag,cls){
   const o=el('div','obj '+(cls||'layer')); o._w=w; o.style.width=w+'px';
   const im=el('div',null,o); im.style.width='100%'; im.style.backgroundImage=`url(${A}${img})`;
-  im.style.backgroundSize='100% auto'; im.style.backgroundRepeat='no-repeat'; o._im=im;
+  im.style.backgroundSize='100% auto'; im.style.backgroundRepeat='no-repeat'; o._im=im; o._blurTarget=im;
   if(tag){const tg=el('div','tag',o); tg.textContent=tag;}
   return o;
 }

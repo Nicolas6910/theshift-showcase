@@ -12,7 +12,8 @@ export const B = {
   eyebrow: 'AI Driven Development',
   headline1: 'Dans cinq ans, votre entreprise sera AI Driven.',
   headline2: 'Ou elle ne sera plus.',
-  tagline: "L'usine logicielle qui fait basculer les entreprises en AI Driven Development.",
+  // phrase du site, mot pour mot (hero de la page d'accueil)
+  tagline: "L'usine logicielle qui a déjà fait basculer MFA, Expert-Flow.ai et Prizoners.",
   stats: [
     {v:88, suf:' %', l:"des entreprises utilisent déjà l'IA"},
     {v:94, suf:' %', l:"n'en tirent aucune valeur"},
