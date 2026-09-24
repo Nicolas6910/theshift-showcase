@@ -1,5 +1,11 @@
 import {clamp,lerp,E,inv,seg} from './utils.js';
 const cur=()=>document.getElementById('cursor');
+/** Coordonnees d'un element dans le repere #app (1920x1080), apres transforms 3D. */
+export function screenPt(el){
+  const a=document.getElementById('app').getBoundingClientRect();
+  const r=el.getBoundingClientRect(), sc=a.width/1920||1;
+  return [(r.left+r.width/2-a.left)/sc,(r.top+r.height/2-a.top)/sc];
+}
 const rip=()=>cur().querySelector('.ripple');
 
 // courbe de Bezier cubique : le curseur n'avance jamais en ligne droite
@@ -9,6 +15,8 @@ export function bez(p0,p1,p2,p3,t){
 }
 /** Deplace le curseur de `from` vers `to` entre t0 et t1, clic a tClick. */
 export function cursorMove(t,{from,to,t0,t1,click,fade=.25}){
+  if(from&&from.nodeType)from=screenPt(from);
+  if(to&&to.nodeType)to=screenPt(to);
   const c=cur(), k=clamp(inv(t0,t1,t));
   const e=E.inOutQuint(k);
   const c1=[lerp(from[0],to[0],.28)+ (to[1]-from[1])*.16, lerp(from[1],to[1],.1)-64];
@@ -19,8 +27,10 @@ export function cursorMove(t,{from,to,t0,t1,click,fade=.25}){
   if(click!=null){ const d=t-click; if(d>-.02&&d<.34) press=Math.sin(clamp(d/.34)*Math.PI); }
   c.style.opacity=app.toFixed(3);
   c.style.visibility=app<=.004?'hidden':'visible';
-  c.style.transform=`translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,0) scale(${(1-press*.2).toFixed(3)})`;
+  // la pointe de la fleche (et non le coin du SVG) doit tomber sur la cible
+  c.style.transform=`translate3d(${(x-5).toFixed(1)}px,${(y-7).toFixed(1)}px,0) scale(${(1-press*.2).toFixed(3)})`;
   if(click!=null){ const d=(t-click)/.62;
+    rip().style.left='5px'; rip().style.top='7px';
     if(d>=0&&d<=1){ rip().style.opacity=(1-E.out(d)).toFixed(3); rip().style.transform=`scale(${(1+E.outExpo(d)*4.6).toFixed(3)})`; }
     else rip().style.opacity=0;
   } else rip().style.opacity=0;

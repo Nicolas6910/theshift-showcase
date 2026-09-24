@@ -66,3 +66,11 @@ export function logoBlock(){
   return o;
 }
 export function measure(o){if(o._ctr)return o;o._w=o.offsetWidth;o._h=o.offsetHeight;return o;}
+
+/** Ancre invisible a une position relative (fx,fy) d'une carte : sert de cible au curseur.
+ *  Sa position ecran est lue apres transform 3D, donc elle reste exacte quelle que soit la camera. */
+export function hotspot(parent,fx,fy){
+  const h=el('div',null,parent);
+  h.style.cssText=`position:absolute;left:${(fx*100).toFixed(3)}%;top:${(fy*100).toFixed(3)}%;width:0;height:0;pointer-events:none`;
+  return h;
+}
