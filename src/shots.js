@@ -173,21 +173,30 @@ function exploded(t,g){
   const m=M.exploded, lt=t-m.t0, G=gate();
   const openK=E.outQuint(clamp(inv(.25,2.1,lt)));
   const closeK=E.spring(clamp(inv(6.0,7.3,lt)),2.4,5.0);
-  const sep=lerp(.22,1,openK)*(1-clamp(closeK)*.7)+.22*clamp(closeK);  // jamais un empilement exact
+  const sep=lerp(.24,1,openK)*(1-clamp(closeK)*.68)+.24*clamp(closeK);
   const orbit=E.inOutQuint(clamp(inv(.3,5.4,lt)));
   const N=O.layers.length;
-  const zc=zfit(1040,760,.58,.66);
+  // L'echelle perspective ecrase les ecarts : une bande eloignee est plus petite ET plus
+  // resserree. On construit donc la pile pour que l'ecart PROJETE soit constant (GAP px),
+  // en divisant chaque position par l'echelle de sa propre profondeur. Une bande de 104 px
+  // projetee au plus a 1,33 fait 138 px : GAP=158 garantit qu'aucune ne peut en couper une autre.
+  const zc=zfit(860,900,.50,.80), GAP=166, DZ=104;
+  const sc=z=>P/(P-z);
+  let acc=-((N-1)*GAP)/2; const ys=[];
+  for(let i=0;i<N;i++){ const c=i-(N-1)/2, z=zc+c*DZ*sep;
+    if(i>0) acc+=GAP;
+    ys.push(acc/sc(z)); }
   O.layers.forEach((L,i)=>{
-    const c=i-(N-1)/2;
-    const z=zc + c*196*sep, y=c*98*sep-54, x=c*18*sep;
-    const d=Math.abs(c*210*sep)*.0042;
-    place(L,{x,y,z,rx:lerp(4,16,sep),ry:lerp(0,-3.2,sep),o:G,s:lerp(1,.9,sep*.4),blur:d});
-    L._tag.style.opacity=(G*E.out(clamp(inv(.35+i*.07,1.15+i*.07,lt)))*(1-clamp(closeK))).toFixed(3);
+    const c=i-(N-1)/2, z=zc+c*DZ*sep, x=c*46*sep;
+    place(L,{x,y:ys[i]-26,z,rx:lerp(3,11,sep),ry:lerp(0,-3,sep),o:G,s:1,
+      blur:Math.abs(c*DZ*sep)*.004});
+    L._tag.style.opacity=(G*E.out(clamp(inv(.12+i*.045,.72+i*.045,lt)))*(1-clamp(closeK)*.85)).toFixed(3);
   });
-  applyCam({x:lerp(-20,34,orbit),y:lerp(-4,14,orbit),z:0,ry:lerp(-15,16,orbit),rx:lerp(-2,5,orbit),dof:0});
+  applyCam({x:lerp(-18,30,orbit),y:lerp(-4,12,orbit),z:0,ry:lerp(-14,15,orbit),rx:lerp(-2,4.5,orbit),dof:0});
   g.gridK=.55;
-  caption(t,{eyebrow:'Anatomie de la page d’accueil',text:'Une page, six couches.',t0:m.t0+1.3,t1:m.t1-.8});
+  caption(t,{eyebrow:'Anatomie de la page d’accueil',text:'Une page, six couches.',t0:m.t0+1.1,t1:m.t1-.6});
 }
+
 function services(t,g){
   const m=M.services, lt=t-m.t0, G=gate();
   const k=E.inOutQuint(clamp(inv(.15,5.3,lt)));
@@ -249,9 +258,9 @@ function devices(t,g){
   O.win._path.textContent='';
   place(O.win,{x:lerp(48,92,k)+(1-en(0))*54,y:lerp(-90,-108,k)+(1-en(0))*30,z:lerp(-430,-380,k)-(1-en(0))*90,rx:3.4,ry:lerp(15,11,k),o:G,s:1});
   place(O.laptop,{x:lerp(486,502,k)+(1-en(1))*46,y:lerp(96,78,k)+(1-en(1))*34,z:lerp(-160,-120,k)-(1-en(1))*90,rx:lerp(6,4,k),ry:lerp(-19,-14,k),o:G,s:1});
-  const ph=310*ar('home_mobscroll'), pv=310*2.164-22-48;
+  const ph=310*ar('home_mobscroll');
   O.phone._screen.style.height=ph+'px';
-  O.phone._screen.style.transform=`translateY(${(-E.inOutQuint(clamp(inv(.5,3.6,lt)))*(ph-pv)*.46).toFixed(1)}px)`;
+  O.phone._screen.style.transform='translateY(0px)';   // hero fixe : aucun titre ne peut etre tranche
   place(O.phone,{x:lerp(-470,-448,k)-(1-en(2))*46,y:lerp(46,28,k)+(1-en(2))*34,z:lerp(20,70,k)-(1-en(2))*90,rx:lerp(4,3,k),ry:lerp(21,15,k),o:G,s:1});
   place(O.deskShadow,{x:496,y:356,z:-210,o:G*.3});
   applyCam({x:lerp(96,20,k),y:lerp(-16,6,k),z:0,ry:lerp(-5.5,3.5,k),rx:lerp(-1,2,k),dof:0});
