@@ -35,9 +35,11 @@ export function phone(w,img){
   const h=Math.round(w*2.164);
   const o=el('div','obj phone'); o._w=w; o._h=h; o.style.width=w+'px'; o.style.height=h+'px';
   const inn=el('div','phone-inner',o); el('div','notch',inn);
-  const im=el('div','shot',inn); im.style.backgroundImage=`url(${A}${img})`;
-  im.style.top='48px';                      // zone de securite : le contenu ne passe jamais sous l'encoche
-  o._screen=im; o._safe=48;
+  // cadre de decoupe qui demarre SOUS l'encoche : le defilement s'y fait, le contenu
+  // ne peut donc jamais remonter derriere l'encoche.
+  const clip=el('div','phone-clip',inn);
+  const im=el('div','shot',clip); im.style.backgroundImage=`url(${A}${img})`;
+  o._screen=im; o._clip=clip; o._safe=48;
   return o;
 }
 export function imgLayer(w,img,tag,cls){

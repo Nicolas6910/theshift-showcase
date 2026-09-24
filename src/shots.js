@@ -10,8 +10,8 @@ export const DIM={
   mfa_desktop:[1920,1200], services_desktop:[1920,1200], pricing_desktop:[1920,1200],
   formation_desktop:[1920,1200], references_desktop:[1920,1200], casusage_desktop:[1920,1200],
   conseil_desktop:[1920,1200], contact_desktop:[1920,1200],
-  band_nav:[1400,74], band_hero:[1400,175], band_results:[1400,175], band_services:[1400,175],
-  band_why:[1400,175], band_cta:[1400,175], mfa_proof:[1400,883],
+  band_nav:[1400,74], band_hero:[1400,170], band_results:[1400,170], band_services:[1400,170],
+  band_why:[1400,170], band_cta:[1400,170], mfa_proof:[1400,885],
   home_nav:[1500,78], home_hero:[1500,1183], home_results:[1500,868], home_services:[1500,1080],
   home_why:[1500,1394], home_cta:[1500,514], stats_band:[1800,244],
   tab_Chatbot:[1500,1080], tab_Email:[1500,1066], tab_Veille:[1500,1066],
@@ -171,8 +171,8 @@ function stats(t,g){
 }
 function exploded(t,g){
   const m=M.exploded, lt=t-m.t0, G=gate();
-  const openK=E.outQuint(clamp(inv(.45,3.2,lt)));
-  const closeK=E.spring(clamp(inv(4.9,6.8,lt)),2.4,5.0);
+  const openK=E.outQuint(clamp(inv(.25,2.1,lt)));
+  const closeK=E.spring(clamp(inv(6.0,7.3,lt)),2.4,5.0);
   const sep=lerp(.22,1,openK)*(1-clamp(closeK)*.7)+.22*clamp(closeK);  // jamais un empilement exact
   const orbit=E.inOutQuint(clamp(inv(.3,5.4,lt)));
   const N=O.layers.length;
@@ -182,7 +182,7 @@ function exploded(t,g){
     const z=zc + c*196*sep, y=c*98*sep-54, x=c*18*sep;
     const d=Math.abs(c*210*sep)*.0042;
     place(L,{x,y,z,rx:lerp(4,16,sep),ry:lerp(0,-3.2,sep),o:G,s:lerp(1,.9,sep*.4),blur:d});
-    L._tag.style.opacity=(G*E.out(clamp(inv(.8+i*.08,1.8+i*.08,lt)))*(1-clamp(closeK))).toFixed(3);
+    L._tag.style.opacity=(G*E.out(clamp(inv(.35+i*.07,1.15+i*.07,lt)))*(1-clamp(closeK))).toFixed(3);
   });
   applyCam({x:lerp(-20,34,orbit),y:lerp(-4,14,orbit),z:0,ry:lerp(-15,16,orbit),rx:lerp(-2,5,orbit),dof:0});
   g.gridK=.55;

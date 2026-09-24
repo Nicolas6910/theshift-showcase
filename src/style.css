@@ -60,7 +60,8 @@ html,body{height:100%;background:#06080f;font-family:'Inter',system-ui,-apple-sy
   box-shadow:0 26px 46px -22px #0f172a80}
 .laptop-notch{position:absolute;left:50%;top:0;width:96px;height:7px;background:#0f172a;border-radius:0 0 7px 7px;transform:translateX(-50%)}
 .phone{border-radius:44px;background:#0f172a;padding:11px;box-shadow:0 2px 4px #0f172a1f,0 26px 60px -18px #0f172a5c}
-.phone-inner{border-radius:34px;overflow:hidden;background:#fff;position:relative;height:100%;padding-top:48px}
+.phone-inner{border-radius:34px;overflow:hidden;background:#fff;position:relative;height:100%}
+.phone-clip{position:absolute;left:0;right:0;top:48px;bottom:0;overflow:hidden;background:#fff}
 .phone .notch{position:absolute;left:50%;top:11px;width:108px;height:26px;background:#0f172a;border-radius:15px;transform:translateX(-50%);z-index:3}
 
 /* cards / layers */
